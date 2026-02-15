@@ -90,7 +90,7 @@ const BrandSection = () => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
-      className="w-full flex flex-col gap-20 md:gap-24 px-4 sm:px-6 lg:px-20"
+      className="w-full flex flex-col gap-20 md:gap-24 sm:px-6 lg:px-20"
     >
       {/* Dashboard */}
       <motion.div variants={scaleIn}>

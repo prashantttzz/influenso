@@ -136,6 +136,7 @@ useEffect(() => {
 
   return (
     <motion.section
+    id="stat"
       ref={ref}
       variants={container}
       initial="hidden"

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import Link from "next/link";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -42,9 +43,10 @@ const Header = () => {
         <h1 className="font-semibold text-lg">CreatorSync</h1>
 
         <div className="hidden md:flex items-center gap-6 text-sm">
-          <p className="cursor-pointer hover:text-white/80">Role</p>
-          <p className="cursor-pointer hover:text-white/80">Trusted by</p>
-          <p className="cursor-pointer hover:text-white/80">Stats</p>
+          <Link href="#role" className="cursor-pointer hover:text-white/80">Role</Link>
+          <Link href="#trust" className="cursor-pointer hover:text-white/80">Trusted By</Link>
+          <Link href="#stat" className="cursor-pointer hover:text-white/80">Stats</Link>
+
         </div>
 
         <div className="flex items-center gap-3">
@@ -76,9 +78,9 @@ const Header = () => {
           transition={{ duration: 0.25, ease: "easeOut" }}
           className="fixed top-24 left-1/2 -translate-x-1/2 w-[92%] bg-black/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 flex flex-col gap-6 text-white md:hidden z-[998]"
         >
-          <p className="text-lg">Home</p>
-          <p className="text-lg">About</p>
-          <p className="text-lg">Works</p>
+    <Link href="#role" className="cursor-pointer hover:text-white/80">Role</Link>
+          <Link href="#trust" className="cursor-pointer hover:text-white/80">Trusted By</Link>
+          <Link href="#stat" className="cursor-pointer hover:text-white/80">Stats</Link>
 
           <Button
             className="glass rounded-full flex items-center justify-center gap-2 mt-2"

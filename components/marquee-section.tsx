@@ -38,7 +38,7 @@ const MarqueeSection = () => {
   ];
 
   return (
-    <div className="w-full min-h-[70vh] md:h-screen flex items-center justify-center flex-col px-6">
+    <div id="trust" className="w-full min-h-[70vh] md:h-screen flex items-center justify-center flex-col px-6">
       <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[160px] text-center font-bold font-manrope! fade-text-bottom leading-tight">
         TRUSTED <span className="text-red-500">BY</span>
       </h1>
