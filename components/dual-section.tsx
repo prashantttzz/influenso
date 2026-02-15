@@ -11,23 +11,32 @@ import { motion, AnimatePresence } from "framer-motion";
 const DualSection = () => {
   const [role, setRole] = useState<"brand" | "creator">("brand");
 const contentRef = useRef<HTMLDivElement>(null);
+const firstLoad = useRef(true);
+
 useEffect(() => {
+  // skip scroll on initial page load
+  if (firstLoad.current) {
+    firstLoad.current = false;
+    return;
+  }
+
   if (!contentRef.current) return;
 
   const t = setTimeout(() => {
     const y =
       contentRef.current!.getBoundingClientRect().top +
       window.pageYOffset -
-      120; // offset from top
+      120;
 
     window.scrollTo({
       top: y,
       behavior: "smooth",
     });
-  }, 250); // wait for section switch animation
+  }, 250);
 
   return () => clearTimeout(t);
 }, [role]);
+
   // container stagger
   const container = {
     hidden: { opacity: 0 },
