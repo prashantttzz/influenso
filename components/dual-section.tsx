@@ -7,35 +7,36 @@ import { useRef, useEffect } from "react";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Spotlight } from "./ui/spotlight-new";
 
 const DualSection = () => {
   const [role, setRole] = useState<"brand" | "creator">("brand");
-const contentRef = useRef<HTMLDivElement>(null);
-const firstLoad = useRef(true);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const firstLoad = useRef(true);
 
-useEffect(() => {
-  // skip scroll on initial page load
-  if (firstLoad.current) {
-    firstLoad.current = false;
-    return;
-  }
+  useEffect(() => {
+    // skip scroll on initial page load
+    if (firstLoad.current) {
+      firstLoad.current = false;
+      return;
+    }
 
-  if (!contentRef.current) return;
+    if (!contentRef.current) return;
 
-  const t = setTimeout(() => {
-    const y =
-      contentRef.current!.getBoundingClientRect().top +
-      window.pageYOffset -
-      120;
+    const t = setTimeout(() => {
+      const y =
+        contentRef.current!.getBoundingClientRect().top +
+        window.pageYOffset -
+        120;
 
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
-  }, 250);
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    }, 250);
 
-  return () => clearTimeout(t);
-}, [role]);
+    return () => clearTimeout(t);
+  }, [role]);
 
   // container stagger
   const container = {
@@ -50,7 +51,7 @@ useEffect(() => {
   };
 
   // fade from bottom
-  const fadeUp:Variants = {
+  const fadeUp: Variants = {
     hidden: {
       opacity: 0,
       y: 60,
@@ -68,7 +69,7 @@ useEffect(() => {
   };
 
   // switch animation (brand/creator)
-  const switchAnim:Variants = {
+  const switchAnim: Variants = {
     initial: { opacity: 0, y: 40, scale: 0.98 },
     animate: { opacity: 1, y: 0, scale: 1 },
     exit: { opacity: 0, y: -40, scale: 0.98 },
@@ -76,20 +77,19 @@ useEffect(() => {
 
   return (
     <motion.div
-    id="role"
+      id="role"
       variants={container}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-80px" }}
-      className="w-full flex items-center justify-start flex-col px-10 md:px-16 lg:px-32 py-16 md:py-24 gap-10"
+      className="w-full flex items-center justify-start relative overflow-hidden  flex-col px-10 md:px-16 lg:px-32 py-16 md:py-24 gap-10"
     >
-      {/* top section */}
+    
       <motion.div
         variants={fadeUp}
         className="flex md:h-screen flex-col items-center justify-start gap-12 md:gap-20 text-center"
       >
         <div className="flex flex-col items-center justify-center gap-4">
-          
           {/* pill */}
           <motion.div
             variants={fadeUp}
@@ -115,13 +115,15 @@ useEffect(() => {
         </div>
 
         {/* toggle */}
-        <motion.div variants={fadeUp} className="w-full flex items-center justify-center">
+        <motion.div
+          variants={fadeUp}
+          className="w-full flex items-center justify-center"
+        >
           <RoleToggle value={role} onChange={setRole} />
         </motion.div>
       </motion.div>
-
       {/* switching sections */}
-      <div className="w-full relative" ref={contentRef} >
+      <div className="w-full relative" ref={contentRef}>
         <AnimatePresence mode="wait">
           {role === "brand" ? (
             <motion.div key="brand" {...switchAnim}>

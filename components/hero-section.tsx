@@ -52,7 +52,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col lg:flex-row items-center justify-center px-6 md:px-12 lg:px-20 text-white gap-10 lg:gap-0">
+    <div className="min-h-screen z-100 w-full flex flex-col lg:flex-row items-center justify-center px-6 md:px-12 lg:px-20 text-white gap-10 lg:gap-0">
       
       {/* left */}
       <motion.div
@@ -94,7 +94,7 @@ const HeroSection = () => {
           playsInline
           preload="none"
           poster="/poster.jpg"
-          className="w-full max-w-[420px] sm:max-w-[500px] lg:max-w-[650px] object-contain lg:mt-20 lg:ml-20"
+          className="w-full max-w-[420px] sm:max-w-[500px] -z-[2] lg:max-w-[650px] object-contain lg:mt-20 lg:ml-20"
         >
           <source src="/planet4.mp4" type="video/mp4" />
         </motion.video>
