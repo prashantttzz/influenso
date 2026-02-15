@@ -10,19 +10,21 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const DualSection = () => {
   const [role, setRole] = useState<"brand" | "creator">("brand");
-
+const contentRef = useRef<HTMLDivElement>(null);
 useEffect(() => {
-  if (!window.lenis) return;
+  if (!contentRef.current) return;
 
-  // wait for section swap animation to start
   const t = setTimeout(() => {
-    const halfScreen = window.innerHeight * 0.5;
+    const y =
+      contentRef.current!.getBoundingClientRect().top +
+      window.pageYOffset -
+      120; // offset from top
 
-    window.lenis.scrollTo(window.scrollY + halfScreen, {
-      duration: 1.2,
-      easing: (t: number) => 1 - Math.pow(1 - t, 3),
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
     });
-  }, 150); // small delay so new section mounts
+  }, 250); // wait for section switch animation
 
   return () => clearTimeout(t);
 }, [role]);
@@ -109,7 +111,7 @@ useEffect(() => {
       </motion.div>
 
       {/* switching sections */}
-      <div className="w-full relative" >
+      <div className="w-full relative" ref={contentRef} >
         <AnimatePresence mode="wait">
           {role === "brand" ? (
             <motion.div key="brand" {...switchAnim}>

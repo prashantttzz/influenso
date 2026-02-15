@@ -160,8 +160,7 @@ const CreatorSection = () => {
 
           <motion.div variants={videoReveal} className="flex-1 w-full h-[260px] sm:h-[320px] md:h-[500px] lg:h-[80%] rounded-3xl md:rounded-4xl overflow-hidden relative">
             <video autoPlay muted loop playsInline preload="auto" className="object-cover w-full h-full">
-              <source src="/planet.webm" type="video/webm" />
-              <source src="/planet.mp4" type="video/mp4" />
+              <source src="/roi-video.mp4" type="video/mp4" />
             </video>
           </motion.div>
 
